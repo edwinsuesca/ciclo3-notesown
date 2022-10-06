@@ -1,0 +1,85 @@
+$primary-color: #ffffff;
+$secundary-color: #e9edf3;
+$color-text-d: #2e2e2e;
+$color-text-l: #5b6d82;
+$bg-note: #f0f0f0;
+
+$button-prymary-bg: #3c70ff;
+
+body{
+    min-height: 100vh;
+    min-width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    //background-color: $button-prymary-bg;
+}
+.loginContainer{
+    width: 100%;
+    max-width: 500px;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 20px;
+    .logo{
+        width: 200px;
+        margin-bottom: 50px;
+    }
+    h2{
+        font-weight: 100;
+        font-size: 20px;
+        margin-bottom: 20px;
+        color: $color-text-l;
+    }
+    form{
+        width: 100%;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    
+        .itemForm{
+            display: flex;
+            flex-direction: column;
+
+            label{
+                color: $color-text-l;
+                margin-left: 10px;
+            }
+            label::after{
+                content: "*";
+                color: $button-prymary-bg;
+            }
+            input{
+                border: solid 1px #bec7d3;
+                padding: 5px 10px ;
+                outline: none;
+                border-radius: 5px;
+                font-size: 12pt;
+            }
+
+            a{
+                font-size: 14px;
+                align-self: end;
+                margin-top: 10px;
+            }
+        }
+        .button{
+            height: 40px !important;
+            width: 100%;
+            max-width: 250px;
+            align-self: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+    
+    .forgotPass{
+        margin-top: 40px;
+        span{ color: $color-text-l; }
+        a{ font-size: initial !important; }
+    }
+}
+
