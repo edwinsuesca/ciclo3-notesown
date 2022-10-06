@@ -12,14 +12,24 @@ export class PinnedComponent implements OnInit {
   viewContainerRef: ViewContainerRef;
   menuOptions:any = [];
   itemsInPanel;
+  owner
   folderAlter:any;
   
   constructor(private api:ApiService) { }
   ngOnInit(): void {
-    this.getFolders(3);
-
+    setTimeout(() => {
+      this.owner = parseInt(localStorage.getItem("ID"))
+      this.getFolders(3);
+    }, 10);
   }
   
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      this.owner = parseInt(localStorage.getItem("ID"))
+      this.getFolders(3);
+    }, 10);
+  }
+
   toggleFolder(folder:any){
     folder.parentNode.children[1].classList.toggle("notesContainerHidden");
   }
@@ -47,7 +57,7 @@ export class PinnedComponent implements OnInit {
   }
 
   getFolders(panel){
-    this.api.getAllFoldersByIdPanel(panel).subscribe(data =>{
+    this.api.getAllFoldersByIdPanel(panel, this.owner).subscribe(data =>{
       this.itemsInPanel = data;
     });
   }

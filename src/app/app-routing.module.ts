@@ -7,7 +7,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { RegisterComponent } from './pages/register/register.component';
 
 const routes: Routes = [
-  { path: '',   redirectTo: '/login', pathMatch: 'full' }, // redirect to `first-component`
+  { path: '',   redirectTo: 'login', pathMatch: 'full' }, // redirect to `first-component`
   { path: 'editor', component: EditorComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },

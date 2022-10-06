@@ -1,4 +1,4 @@
-import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/services/api.service';
@@ -12,7 +12,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
   loginForm = new FormGroup({
     email : new FormControl('', Validators.required),
     password : new FormControl('', Validators.required)
@@ -61,5 +60,9 @@ export class LoginComponent implements OnInit {
 
   stateSesionChange() {
     this.sesion.emit(true);
+  }
+
+  register(){
+    this.router.navigate(['register'])
   }
 }

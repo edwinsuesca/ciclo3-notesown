@@ -28,9 +28,18 @@ export class ApiService {
   }
 
   //Carpetas
-  getAllFoldersByIdPanel(id_panel:number):Observable<any> {
-    let route = `${this.baseUrl}/folders/getAllByIdPanel/${id_panel}`;
+  getAllFoldersByIdPanel(id_panel:number, id_owner:number):Observable<any> {
+    let route = `${this.baseUrl}/folders/getAllByIdPanel/${id_owner}/${id_panel}`;
     return this.http.get(route);
+  }
+
+  addFolder(id_editor:number):Observable<any> {
+    let body = {
+      'name': `Nueva carpeta ${this.formatDate()}`,
+      'editor': id_editor
+    }
+    let route = `${this.baseUrl}/folders/add`;
+    return this.http.post(route, body);
   }
   
   //Borrar arpeta por ID
@@ -76,8 +85,8 @@ export class ApiService {
   }
 
   //Buscador
-  getNotesByContent(content:any):Observable<any>{
-    let body = {'content': content}
+  getNotesByContent(content:any, id:any):Observable<any>{
+    let body = {'content': content, "id_user": id}
     let route = `${this.baseUrl}/notes/search`;
     return this.http.post(route, body);
   }

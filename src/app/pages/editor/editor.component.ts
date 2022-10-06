@@ -12,20 +12,32 @@ import { Router } from '@angular/router';
 export class EditorComponent implements OnInit, AfterViewInit {
   public Editor = ClassicEditor;
   statusExplorer = false;
-
   noteOnEdition = {
-    "id": 1,
-    "name" : "Titulo",
+    "id": "",
+    "name" : "",
     "description" : "",
     "parentFolder" : "",
     "lastEditor" : "",
-    "panel": 0
-  }
+    "panel": ""
+  };
   folder = 0;
   constructor(private api:ApiService, private router:Router) { }
 
   ngOnInit(): void {
-    
+    if(!localStorage.getItem("sesion")){
+      this.router.navigate(['login'])
+    }
+
+    setTimeout(() => {
+      this.noteOnEdition = {
+        "id": localStorage.getItem("id_note"),
+        "name" : localStorage.getItem("name_note"),
+        "description" : localStorage.getItem("description_note"),
+        "parentFolder" : localStorage.getItem("parentFolder_note"),
+        "lastEditor" : localStorage.getItem("lastEditor_note"),
+        "panel": localStorage.getItem("panel_note")
+      }
+    }, 10);
   }
 
   ngAfterViewInit(): void {
@@ -62,6 +74,13 @@ export class EditorComponent implements OnInit, AfterViewInit {
   }
 
   updateNote(){
+    localStorage.setItem("id_note", this.noteOnEdition.id);
+    localStorage.setItem("name_note", this.noteOnEdition.name);
+    localStorage.setItem("description_note", this.noteOnEdition.description);
+    localStorage.setItem("parentFolder_note", this.noteOnEdition.parentFolder);
+    localStorage.setItem("lastEditor_note", this.noteOnEdition.lastEditor);
+    localStorage.setItem("panel_note", this.noteOnEdition.panel);
+
     let newValuesNote = {
       'id': this.noteOnEdition.id,
       'name': this.noteOnEdition.name,
@@ -70,8 +89,9 @@ export class EditorComponent implements OnInit, AfterViewInit {
       'lastEditor': this.noteOnEdition.lastEditor,
       'panel': this.noteOnEdition.panel
     }
+
     this.api.updateNote(newValuesNote.id, newValuesNote).subscribe( data =>{
-/*       this.router.navigateByUrl('/folders', {skipLocationChange: true}).then(()=> this.router.navigate(["editor"])); */
+      //this.router.navigateByUrl('/folders', {skipLocationChange: true}).then(()=> this.router.navigate(["editor"]));
     })
   }
 }

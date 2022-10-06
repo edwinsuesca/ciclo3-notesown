@@ -10,17 +10,48 @@ import { ApiService } from 'src/app/services/api.service';
 export class FoldersComponent implements OnInit {
   @ViewChild(DynamicMenuDirective) dynamic!: DynamicMenuDirective;
   @Output() datosNota = new EventEmitter<any>();
-
+  @Input() itemsInPanel:any
   viewContainerRef: ViewContainerRef;
   menuOptions:any = [];
-  itemsInPanel;
+  owner;
+  noteOnEdition;
   folderAlter:any;
   
   constructor(private api:ApiService) { }
   ngOnInit(): void {
-    this.getFolders(0);
+    setTimeout(() => {
+      this.owner = parseInt(localStorage.getItem("ID"))
+      this.getFolders(0);
+    }, 10);
 
+    setTimeout(() => {
+      this.noteOnEdition = {
+        "id": localStorage.getItem("id_note"),
+        "name" : localStorage.getItem("name_note"),
+        "description" : localStorage.getItem("description_note"),
+        "parentFolder" : localStorage.getItem("parentFolder_note"),
+        "lastEditor" : localStorage.getItem("lastEditor_note"),
+        "panel": localStorage.getItem("panel_note")
+      }
+    }, 10);
   }
+
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      this.owner = parseInt(localStorage.getItem("ID"))
+      this.getFolders(0);
+
+      this.noteOnEdition = {
+        "id": localStorage.getItem("id_note"),
+        "name" : localStorage.getItem("name_note"),
+        "description" : localStorage.getItem("description_note"),
+        "parentFolder" : localStorage.getItem("parentFolder_note"),
+        "lastEditor" : localStorage.getItem("lastEditor_note"),
+        "panel": localStorage.getItem("panel_note")
+      }
+    }, 10);
+  }
+
   
   toggleFolder(folder:any){
     folder.parentNode.children[1].classList.toggle("notesContainerHidden");
@@ -51,15 +82,22 @@ export class FoldersComponent implements OnInit {
   }
 
   getFolders(panel){
-    this.api.getAllFoldersByIdPanel(panel).subscribe(data =>{
+    this.api.getAllFoldersByIdPanel(panel, this.owner).subscribe(data =>{
       this.itemsInPanel = data;
     });
   }
 
   newNote(containerNotes:any, folder_id:any){
-    this.api.addNote(folder_id, 28).subscribe(data =>{
+    this.api.addNote(folder_id, this.owner).subscribe(data =>{
       this.getFolders(0);
       this.folderAlter = folder_id;
+    })
+  }
+
+  newFolder(){
+    this.api.addFolder(this.owner).subscribe(data =>{
+      console.log(data)
+      this.getFolders(0);
     })
   }
 }

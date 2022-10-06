@@ -10,7 +10,7 @@
         </div>
 
         <div class="panel">
-            <app-folders *ngIf="this.folder == 0" (datosNota)="readNote($event)"></app-folders>
+            <app-folders *ngIf="this.folder == 0" (datosNota)="readNote($event)" [itemsInPanel]="noteOnEdition"></app-folders>
             <app-archived *ngIf="this.folder == 1"></app-archived>
             <app-shared *ngIf="this.folder == 2"></app-shared>
             <app-pinned *ngIf="this.folder == 3"></app-pinned>

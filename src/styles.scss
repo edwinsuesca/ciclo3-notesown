@@ -142,7 +142,8 @@ body{
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 32px;
+            min-height: 32px;
+            height: fit-content;
             padding-left:7px;
             position: relative;
 
@@ -169,6 +170,8 @@ body{
                 }
                 .nameFolder{
                     margin-left: 7px;
+                    max-width: 160px;
+                    padding: 2px 0;
                 }
             }
 
@@ -202,8 +205,9 @@ body{
                 width: 100%;
                 left: 0;
                 position: absolute;
+                height: 100%;
                 &:active{
-                    background-color: $j-shadow;
+                    background-color: $a-yellow;
                 }
             }
         }
@@ -238,6 +242,17 @@ body{
                 border-radius: $n-borderRadius;
                 color: $a-blue;
                 cursor: default;
+            }
+        }
+
+        .noteActive{
+            background-color: #7ac1d3;
+            border-color: $a-blue;
+            color: $g-bgWhite;
+            filter: saturate(1.7);
+            &:hover{
+                filter: saturate(1);
+                color: $g-bgWhite;;
             }
         }
 
@@ -322,6 +337,10 @@ body{
         ul, ol{
             padding-left: 12px !important;
         }
+    }
+
+    .noResult{
+        padding-left: 10px;
     }
     .itemResultContainer{
         display: flex;

@@ -26,11 +26,12 @@ export class NavComponent implements OnInit, AfterViewInit {
   }
 
   searchContent(value:any){
-    this.api.getNotesByContent(value).subscribe(data => {
+    let id = localStorage.getItem("ID");
+    this.api.getNotesByContent(value, id).subscribe(data => {
       this.found.nativeElement.innerHTML = "";
       this.resultSearch = data;
       if(this.resultSearch.length == 0){
-        this.found.nativeElement.innerHTML = `<span class="itemResult">Sin resultados</span>`
+        this.found.nativeElement.innerHTML = `<span class="itemResult noResult">Sin resultados</span>`
       } else {
         for(let i = 0; i < this.resultSearch.length; i++){
           this.found.nativeElement.innerHTML += `
@@ -47,6 +48,7 @@ export class NavComponent implements OnInit, AfterViewInit {
   logout(){
     localStorage.removeItem("sesion");
     localStorage.removeItem("username");
+    localStorage.removeItem("ID");
     this.router.navigate(['login'])
   }
 }
