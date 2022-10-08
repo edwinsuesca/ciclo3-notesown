@@ -17,6 +17,11 @@ $k-textS: 12px;
 $l-textM: 15px;
 $m-textL: 18px;
 
+@font-face {
+    font-family: 'Montserrat';
+    src: url('./assets/fonts/Montserrat/Montserrat-VariableFont_wght.ttf');
+}
+
 $n-borderRadius: 5px;
 
 body{
@@ -26,8 +31,8 @@ body{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "montserrat";
-    font-weight: 500;
+    font-family: 'Montserrat';
+    font-weight:bold;
 
     img{
         -webkit-user-drag: none !important;
