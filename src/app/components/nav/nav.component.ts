@@ -46,9 +46,7 @@ export class NavComponent implements OnInit, AfterViewInit {
   }
 
   logout(){
-    localStorage.removeItem("sesion");
-    localStorage.removeItem("username");
-    localStorage.removeItem("ID");
+    localStorage.clear();
     this.router.navigate(['login'])
   }
 }

@@ -58,6 +58,7 @@ export class FoldersComponent implements OnInit {
   }
 
   selectNote(folder:any, note:any){
+    this.noteOnEdition.id = note.id;
     let nFolders = folder.parentNode.parentNode.childElementCount;
     let parent = folder.parentNode.parentNode;
     for(let i=0; i < nFolders; i++){

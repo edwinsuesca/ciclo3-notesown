@@ -20,13 +20,14 @@
             </div>
             
             <div #notesContainer class="notesContainer" [ngClass]="{notesContainerHidden: folderAlter == item.folder.id}">
-                <ng-container *ngFor="let note of item.notes; index as j">
-                    <div #nameNote class="noteInFolder" [ngClass]="{noteActive: noteOnEdition.id == note.id}" (click)="selectNote(this.folder, note)">{{note.name}}</div>
-                </ng-container>
                 <div *ngIf="item.notes.length == 0" class="noNotes">
                     <img src="../../../assets/img/app/boxEmptyBlue.svg" alt="">
                     <button class="btnPrimary" (click)="newNote(this.notesContainer, item.folder.id)">Nueva nota</button>
                 </div>
+                
+                <ng-container *ngFor="let note of item.notes; index as j">
+                    <div #nameNote class="noteInFolder" [ngClass]="{noteActive: noteOnEdition.id == note.id}" (click)="selectNote(this.folder, note)">{{note.name}}</div>
+                </ng-container>
             </div>
         </div>
     </ng-container>

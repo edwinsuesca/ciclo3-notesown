@@ -44,7 +44,8 @@ export class ApiService {
   
   //Borrar arpeta por ID
   deleteFolderById(id_folder:number):Observable<any> {
-    let route = `${this.baseUrl}/folders/delete/${id_folder}`;
+    let id_owner = localStorage.getItem("ID");
+    let route = `${this.baseUrl}/folders/delete/${id_owner}/${id_folder}`;
     return this.http.delete(route);
   }
 
