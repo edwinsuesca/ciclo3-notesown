@@ -60,7 +60,7 @@ export class EditorComponent implements OnInit, AfterViewInit {
   public onChange( { editor }: ChangeEvent ) {
     const data = editor.getData();
     this.noteOnEdition.description = data;
-    this.updateNote();
+    //this.updateNote();
   }
 
 //Leer nota enviada desde el panel

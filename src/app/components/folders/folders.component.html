@@ -3,6 +3,10 @@
         <span class="titlePanel">Mis Carpetas</span>
         <img class="arrowToggleFolder" src="../../../assets/img/app/addFolderBlue.svg" alt="" title="Crear Carpeta" (click)="newFolder()">
     </div>
+
+    <div class="boxEmpty" *ngIf="itemsInPanel == ''">
+        <img class="imgEmpty" src="../../../assets/img/app/boxEmptyBlue.svg" alt="Imagen ilustración panel vacío">
+    </div>
     <ng-container *ngFor="let item of itemsInPanel; index as i">
         <div class="folder">
             <div #folder class="headerFolder">

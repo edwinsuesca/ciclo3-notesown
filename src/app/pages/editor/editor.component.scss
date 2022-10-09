@@ -137,6 +137,8 @@
     margin: 20px 10px 0 10px;
     border-radius: $n-borderRadius;
     border: 1px solid $e-border;
+    width: 100%;
+    max-width: 700px;
     .titleNote{
         border-radius: $n-borderRadius;
         color: $a-blue;
@@ -147,5 +149,8 @@
         border: none;
         width: 100%;
         outline: none;
+        &::placeholder{
+            color: $e-border; 
+        }
     }
 }

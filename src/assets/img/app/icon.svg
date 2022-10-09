@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="48"
+   height="48.001514"
+   viewBox="0 0 12.7 12.7004"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   sodipodi:docname="favicon.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-253.48719,-118.3119)">
+    <path
+       style="fill:#7ac1d3;fill-opacity:1;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round"
+       d="m 262.01293,118.31217 v 9.29614 h -1.76646 l -4.63473,-5.64421 v 5.64421 h -2.12455 v 1.82978 c 0,0.87209 0.7021,1.57421 1.57392,1.57421 h 9.55187 c 0.8721,0 1.57421,-0.70212 1.57421,-1.57421 v -9.55172 c 0,-0.8721 -0.70211,-1.5742 -1.57421,-1.5742 z"
+       id="path8735" />
+    <path
+       id="path8737"
+       style="fill:#1c1c1c;fill-opacity:1;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round"
+       d="m 259.88838,122.12323 -1.18364,0.38787 0.30322,0.37031 0.88042,1.07495 v -1.38743 z" />
+    <path
+       id="path1521"
+       style="fill:#fbb954;fill-opacity:1;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round"
+       d="m 258.43909,118.3119 -1.74447,1.74446 1.4921,1.82201 1.70138,-0.55734 v -3.00913 z" />
+  </g>
+</svg>

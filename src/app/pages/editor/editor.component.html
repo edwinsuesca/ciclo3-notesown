@@ -18,7 +18,7 @@
     </aside>
     <div class="editorContainer">
         <div class="editor">
-            <input type="text" class="titleNote" [(ngModel)]="noteOnEdition.name" (change)="updateNote()">
+            <input type="text" class="titleNote" [(ngModel)]="noteOnEdition.name" (change)="updateNote()" placeholder="Título de la nota">
             <ckeditor 
             [editor]="Editor"
             

@@ -19,27 +19,17 @@ export class FoldersComponent implements OnInit {
   
   constructor(private api:ApiService) { }
   ngOnInit(): void {
-    setTimeout(() => {
-      this.owner = parseInt(localStorage.getItem("ID"))
-      this.getFolders(0);
-    }, 10);
-
-    setTimeout(() => {
-      this.noteOnEdition = {
-        "id": localStorage.getItem("id_note"),
-        "name" : localStorage.getItem("name_note"),
-        "description" : localStorage.getItem("description_note"),
-        "parentFolder" : localStorage.getItem("parentFolder_note"),
-        "lastEditor" : localStorage.getItem("lastEditor_note"),
-        "panel": localStorage.getItem("panel_note")
-      }
-    }, 10);
+    this.saveDataOnLocalStorage()
   }
 
   ngAfterViewInit(): void {
+    this.saveDataOnLocalStorage()
+  }
+
+  saveDataOnLocalStorage(){
     setTimeout(() => {
       this.owner = parseInt(localStorage.getItem("ID"))
-      this.getFolders(0);
+      localStorage.getItem("sesion")? this.getFolders(0) : false;
 
       this.noteOnEdition = {
         "id": localStorage.getItem("id_note"),
@@ -51,8 +41,6 @@ export class FoldersComponent implements OnInit {
       }
     }, 10);
   }
-
-  
   toggleFolder(folder:any){
     folder.parentNode.children[1].classList.toggle("notesContainerHidden");
   }

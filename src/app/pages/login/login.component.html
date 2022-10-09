@@ -3,7 +3,7 @@
     <div class="formLogin">
         <span class="title">Inicio de Sesión</span>
 
-        <form [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm.value)">
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
             <div class="itemForm">
                 <label for="">Dirección de correo electrónico:</label>
                 <input type="email" placeholder="tucorreo@email.com" formControlName="email">
@@ -20,7 +20,7 @@
             </div>
 
             <div class="itemForm">
-                <input type="submit" class="btnPrimary" value="Iniciar Sesión">
+                <button type="submit" class="btnPrimary" [disabled]="!loginForm.valid">Iniciar</button>
             </div>
         </form>
 

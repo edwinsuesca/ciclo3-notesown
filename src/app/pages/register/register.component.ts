@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/services/api.service';
-import { LoginInterface } from 'src/app/models/login.interface';
-import { ResponseInterface } from 'src/app/models/response.interface';
 import { Router } from '@angular/router';
 
 @Component({
@@ -33,14 +31,13 @@ export class RegisterComponent implements OnInit {
   }
   onLogin(form){
     this.api.login(form).subscribe(data =>{
-      let dataResponse:ResponseInterface = data;
-      if(dataResponse.status == "ok"){
-        localStorage.setItem("sesion", dataResponse.response);
+      if(data.status == "ok"){
+        localStorage.setItem("sesion", data.response);
         this.getUserByEmail(form['email'])
         this.router.navigate(['editor'])
       } else{
         this.errorStatus = true;
-        this.errorMsj = dataResponse.response;
+        this.errorMsj = data.response;
       }
     });
   }

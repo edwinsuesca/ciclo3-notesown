@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/services/api.service';
-import { LoginInterface } from 'src/app/models/login.interface';
-import { ResponseInterface } from 'src/app/models/response.interface';
 import { Router } from '@angular/router';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -23,26 +22,27 @@ export class LoginComponent implements OnInit {
   constructor(private api:ApiService, private router:Router) { }
 
   ngOnInit(): void {
-    this.validateSesion()
+    //this.validateSesion()
   }
 
-  validateSesion(){
-    if(localStorage.getItem("sesion")){
-      this.router.navigate(['editor'])
+  login() {
+    if (!this.loginForm.valid) {
+      return;
     }
-  }
-  onLogin(form){
-    this.api.login(form).subscribe(data =>{
-      let dataResponse:ResponseInterface = data;
-      if(dataResponse.status == "ok"){
-        localStorage.setItem("sesion", dataResponse.response);
-        this.getUserByEmail(form['email'])
-        this.router.navigate(['editor'])
-      } else{
-        this.errorStatus = true;
-        this.errorMsj = dataResponse.response;
+    this.api.login(this.loginForm.value).pipe(
+      tap((data) => {
+        console.log(data.user)
+        if(data.status == "ok"){
+          localStorage.setItem("sesion", data.response);
+          this.getUserByEmail(data.user.email)
+          this.router.navigate(['editor'])
+        } else{
+          this.errorStatus = true;
+          this.errorMsj = data.response;
       }
-    });
+        this.router.navigate(['editor'])
+      })
+    ).subscribe();
   }
 
   getUserByEmail(email:string){
@@ -56,10 +56,6 @@ export class LoginComponent implements OnInit {
       localStorage.setItem("username", `${user.name} ${user.lastname}`);
       localStorage.setItem("ID", user.id);
     });
-  }
-
-  stateSesionChange() {
-    this.sesion.emit(true);
   }
 
   register(){

@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { LoginInterface } from '../models/login.interface';
-import { ResponseInterface } from '../models/response.interface';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { map, switchMap } from 'rxjs/operators';
@@ -16,9 +14,11 @@ export class ApiService {
   baseUrl = "http://127.0.0.1:5000/api";
   constructor(private http:HttpClient) { }
 
-  login(form):Observable<ResponseInterface>{
+  login(form):Observable<any>{
     let route = `${this.baseUrl}/users/login`;
-    return this.http.post<ResponseInterface>(route, form);
+    return this.http.post<any>(route, form).pipe(
+      catchError(this.handleError)
+    );
   }
 
   //Usuarios
@@ -90,5 +90,19 @@ export class ApiService {
     let body = {'content': content, "id_user": id}
     let route = `${this.baseUrl}/notes/search`;
     return this.http.post(route, body);
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    if (error.status === 0) {
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error('An error occurred:', error.error);
+    } else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong.
+      console.error(
+        `Backend returned code ${error.status}, body was: `, error.error);
+    }
+    // Return an observable with a user-facing error message.
+    return throwError(() => new Error('Something bad happened; please try again later.'));
   }
 }
